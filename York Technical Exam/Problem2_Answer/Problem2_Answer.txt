@@ -1,0 +1,59 @@
+Hardware requirement:: Camera , PC
+
+Assumptions:
+============
+There is enough lighting for the camera to take relatively good image
+(good enough to be still visible when you turn the image into grayscale).
+The camera is capturing thee whole object not only a part of it.
+(this can be one object or many but each one is taken entirely)
+
+Case1. Are the object going to be in one place? Yes
+
+classes:
+=============
+1.Camera class:
+this class represent the camera in the system.
+important methods: 
+CaptureImage(){logic to take an image,
+create a new image to hold the image data
+ and saves the image in our database.}
+
+we can use our own image class or rely on the exising classes.
+
+2.Image class:
+Represent the image taken by the camera( the one containing objects that need to be recognized)
+
+
+3.RepresentedObject class: 
+This class represent recognized object.
+It is going to help us store information about a recognized object in the database.
+
+attributes:
+
+it has attributes that define an object.
+how many sides that this image have,
+(how high is the higest side), how wide is the widest side) thinking in term of a rectangle(with and height),
+and what is the ratio between its highest and its widest side(or simply the ratio between the hight and the width of its bounding rectangle)
+color of the image and the time when the image was taken and the shape
+
+4.ImageProcessor: 
+Has processImageMethod(takes in an image){
+calls different arleadyexisting image processing libraries (eg:OpenCV in python) to 
+do analysis on the captured image to find out needed information to create an image object and identify its shape.
+Saves the identified object in the database using tje RepresentedObject class.
+}
+
+5.Dashbord:
+
+To present all the information to the user in the needed format
+
+
+2. Are object moving and passing in front of the camera?Yes
+Hardware requirement:: Camera , PC, motion sensor.
+
+Same classes as in the first scenario, but we need a motion sensor so we can know when the obeject is here and
+call the capture image method of the camera class.
+
+3.Are the objects moving and not passing in front of the camera (moving in a distant place with a lot of motion noise)Yes
+Hardware requirement:: Camera , PC, motion sensor.
+Sme logic as in the first scenario, but schedule the camera on when to take capture images(eg: everysecond, or everyminute)
